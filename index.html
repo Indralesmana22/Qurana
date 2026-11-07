@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Qurana – Teman Ibadah Digital</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Amiri+Quran&family=Scheherazade+New:wght@400;700&display=swap">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="app">
+        <header class="topbar">
+            <div class="brand"><span class="logo"><svg viewBox="0 0 40 40" aria-hidden="true">
+                        <path fill="#c9a24b"
+                            d="M24.9 8H26.9V10.1H24.9ZM21.4 8H23.5V10.1H21.4ZM25.2 17.8Q25.7 17.4 25.7 16.9Q25.7 16.1 25 15.7Q24.6 15.4 24 15.4Q23.4 15.4 23 15.8Q22.6 16.2 22.6 16.9Q22.6 17.4 23.1 17.8Q23.4 18.1 24.1 18.1Q24.8 18.1 25.2 17.8ZM16.6 28.5Q19.6 28.5 21.8 27.1Q26 24.4 26 20.6Q25 21.3 23.4 21.3Q20.4 21.3 19.1 20.1Q17.7 19 17.7 17.2Q17.7 16.4 17.8 15.8Q18.2 13.6 20.2 12.8Q21.7 12.3 23.8 12.2Q27.1 12.2 28.5 13Q29.6 13.7 30.5 15.9Q30.9 17.1 30.9 19.5Q30.9 22.4 30.1 24.3Q28.6 27.6 25.4 29.8Q22.2 32 16.6 32Q12 32 10.2 29.4Q9.1 27.8 9.1 25.4Q9.1 23 10.2 20Q10.2 20 15.2 20Q14 22.5 13.9 24.7Q13.9 25.4 14.1 26.2Q14.5 28.5 16.6 28.5Z" />
+                    </svg></span>
+                <div><b>Qurana</b><small>Teman Ibadah Digital</small></div>
+            </div>
+            <button id="themeBtn" class="icon-btn" aria-label="Ganti mode gelap/terang">🌙</button>
+        </header>
+
+        <main>
+            <!-- BERANDA -->
+            <section id="page-home" class="page active">
+                <div class="hero">
+                    <p id="greeting">Assalamu'alaikum</p>
+                    <h1 id="hijri">…</h1>
+                    <p id="masehi" class="muted-light"></p>
+                </div>
+
+                <div class="card verse">
+                    <h3>Ayat hari ini</h3>
+                    <p id="vArab" class="arab" dir="rtl" lang="ar">Memuat…</p>
+                    <p id="vId"></p>
+                    <small id="vRef" class="muted"></small>
+                </div>
+
+                <div class="card">
+                    <div class="row">
+                        <h3>Jadwal salat</h3><button id="cityBtn" class="chip">Jakarta</button>
+                    </div>
+                    <div id="prayers" class="prayers">Memuat…</div>
+                    <small id="nextPrayer" class="muted"></small>
+                </div>
+
+                <div class="card">
+                    <div class="row">
+                        <h3>Target khatam</h3>
+                        <select id="khatamSel" aria-label="Target khatam">
+                            <option value="30">30 hari</option>
+                            <option value="60">60 hari</option>
+                            <option value="90">90 hari</option>
+                        </select>
+                    </div>
+                    <div class="bar"><i id="khatamBar"></i></div>
+                    <small id="khatamTxt" class="muted"></small>
+                    <button id="continueBtn" class="btn">Lanjutkan membaca</button>
+                </div>
+
+                <div class="menu">
+                    <button data-go="quran">📖<span>Al-Qur'an</span></button>
+                    <button data-go="bookmarks">🔖<span>Bookmark</span></button>
+                    <button data-go="hafalan">🌱<span>Hafalan</span></button>
+                    <button data-go="belajar">🎓<span>Belajar</span></button>
+                </div>
+            </section>
+
+            <!-- AL-QUR'AN -->
+            <section id="page-quran" class="page">
+                <div id="listView">
+                    <input id="search" class="search" type="search" placeholder="Cari surah (nama atau nomor)">
+                    <div id="surahList"></div>
+                </div>
+                <div id="readView" hidden>
+                    <div class="reader-head">
+                        <button id="backBtn" class="chip">← Surah</button>
+                        <div><b id="rName"></b><small id="rMeta" class="muted"></small></div>
+                        <button id="repeatBtn" class="chip" title="Ulangi ayat">🔁 Off</button>
+                    </div>
+                    <div class="mode-row">
+                        <button id="navPrev" class="chip" title="Surah sebelumnya">‹ Sebelumnya</button>
+                        <button id="arabBtn" class="chip" aria-pressed="false"
+                            title="Tampilkan ayat bersambung tanpa terjemahan dan Latin">Arab saja</button>
+                        <button id="navNext" class="chip" title="Surah selanjutnya">Selanjutnya ›</button>
+                    </div>
+                    <div id="player" class="player">
+                        <div class="p-row">
+                            <button id="pPrev" class="chip" aria-label="Ayat sebelumnya">⏮</button>
+                            <button id="pPlay" class="chip big">▶ Putar surah</button>
+                            <button id="pNext" class="chip" aria-label="Ayat berikutnya">⏭</button>
+                        </div>
+                        <div class="p-bar"><i id="pFill"></i></div>
+                        <div class="p-row"><span id="pInfo" class="muted">Ayat –</span>
+                            <label>Kecepatan <select id="pSpeed">
+                                    <option value="0.75">0.75x</option>
+                                    <option value="1">1x</option>
+                                    <option value="1.25">1.25x</option>
+                                    <option value="1.5">1.5x</option>
+                                </select></label>
+                            <label>Qari <select id="pQari"></select></label>
+                        </div>
+                    </div>
+                    <div id="ayahs"></div>
+                </div>
+            </section>
+
+            <section id="page-bookmarks" class="page">
+                <h2>Bookmark</h2>
+                <div id="bmList"></div>
+            </section>
+
+            <section id="page-hafalan" class="page">
+                <div class="card soon">
+                    <h3>Hafalan</h3>
+                    <p>Segera hadir di tahap berikutnya: target harian, checklist ayat, dan catatan.</p>
+                </div>
+            </section>
+            <section id="page-belajar" class="page">
+                <div class="card soon">
+                    <h3>Belajar</h3>
+                    <p>Segera hadir di tahap berikutnya: tajwid, makharijul huruf, doa harian, dan kuis.</p>
+                </div>
+            </section>
+            <section id="page-profil" class="page">
+                <div class="card soon">
+                    <h3>Profil</h3>
+                    <p>Segera hadir di tahap berikutnya: nama, foto, riwayat, dan statistik.</p>
+                </div>
+            </section>
+        </main>
+
+        <div id="verseBar" class="verse-bar" hidden><b id="vbTitle"></b><button id="vbPlay" class="chip">▶
+                Putar</button><button id="vbBm" class="chip">🏷️ Simpan</button><button id="vbLast" class="chip">📍
+                Tandai</button><button id="vbClose" class="chip" aria-label="Tutup">✕</button></div>
+        <nav class="tabs">
+            <button data-go="home" class="on">🏠<span>Beranda</span></button>
+            <button data-go="quran">📖<span>Al-Qur'an</span></button>
+            <button data-go="hafalan">🌱<span>Hafalan</span></button>
+            <button data-go="belajar">🎓<span>Belajar</span></button>
+            <button data-go="profil">👤<span>Profil</span></button>
+        </nav>
+        <div id="toast" class="toast"></div>
+    </div>
+    <script src="nama_surat.js"></script>
+    <script src="java.js"></script>
+</body>
+
+</html>
